@@ -1,0 +1,76 @@
+<html>   
+<head>
+    <link rel="icon" href="images/icon.jpg">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <title>AnonImage</title>
+
+    <style>
+        @media only screen and (max-width: 1100px) { /* Matches phones */
+        }
+        body {
+            text-align: center;
+            font-family: monospace;
+            margin-top: 5%;
+            font-size: 2em;
+        }
+        #returned-image img {
+            max-width: 80vw;
+            max-height: 80vh;
+        }
+        #loading {
+            display: none;
+        }
+        #image-upload {
+            font-size: 1em;
+        }
+    </style>
+</head>
+
+<body> 
+    <h1>Anonymize the people in your photographs</h1>
+    <form role="form" action="/anonymize_image" id="image-form" method="POST" enctype="multipart/form-data">
+        <input id="image-upload" name="image" type="file" accept=".png,.jpg,.jpeg,.tiff,.gif" /> 
+    </form>
+    <div id="returned-image"></div>
+    <div id="loading">Loading</div>
+</body>
+
+<script>
+function displayAnonymizedImage(data) {
+    jQuery('#returned-image').html('<img src="data:image/jpeg;base64,' + data + '" />');
+}
+
+function loading(isLoading) {
+    if (isLoading) {
+        jQuery('#loading').show();
+        jQuery('body').css({'cursor':'wait'});
+    } else {
+        jQuery('#loading').hide();
+        jQuery('body').css({'cursor':'unset'});
+    }
+}
+
+jQuery('#image-upload').change(function() {
+    loading(true);
+
+    // // This will download the image
+    // jQuery('#image-form').submit();
+
+    // This will display the image
+    jQuery.ajax({
+        type: "POST",
+        method: "POST",
+        cache: false,
+        url: '/anonymize_image',
+        data: new FormData(jQuery('#image-form')[0]),
+        success: displayAnonymizedImage,
+        enctype:"multipart/form-data",
+        contentType: false,
+        processData: false,
+        complete: function(){ loading(false); }
+    });
+});
+</script>
+</html>
