@@ -1,13 +1,9 @@
 import http.server
 import socketserver
-import os
 import cv2
 import numpy as np
 import cgi
 import base64
-
-from urllib.parse import urlparse
-from urllib.parse import parse_qs
 
 from anonymize_image import *
 
