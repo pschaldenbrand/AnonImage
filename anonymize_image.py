@@ -1,3 +1,5 @@
+"""Script with functions to anonymize images"""
+
 import cv2
 from PIL import Image
 import numpy as np
@@ -23,10 +25,15 @@ trf = T.Compose([T.Resize((500,500)),#256),
                              std = [0.229, 0.224, 0.225])])
 
 def anonymize_image(img):
-    ''' 
-    img - cv2 BGR image 
-    return numpy matrix of same dimensions anonymized RGB
-    '''
+    """
+    Anonymize a given image by replacing identifying personal information with grey pixels
+    
+    args:
+        img (np.array[w, h, channels]) : cv2 BGR image
+    
+    return:
+        np.array[w, h, channels] : anonymized RGB image
+    """
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     im_pil = Image.fromarray(img)
     

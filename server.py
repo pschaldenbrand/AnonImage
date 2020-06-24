@@ -1,3 +1,5 @@
+"""Serve a website that allows users to anonymize images that they upload """
+
 import http.server
 import socketserver
 import cv2

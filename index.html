@@ -45,6 +45,12 @@
             height: 100vh;
             background-color: rgba(152, 152, 152, 0.67);
         }
+        #author-info {
+            position: fixed;
+            text-align: left;
+            bottom: 20px;
+            right: 20px;
+        }
         .rotate {
             -webkit-animation: spin 6s linear infinite;
             -moz-animation: spin 6s linear infinite;
@@ -69,6 +75,10 @@
         <input id="image-upload" name="image" type="file" accept=".png,.jpg,.jpeg,.tiff,.gif" /> 
     </form>
     <div id="returned-image"></div>
+    <div id="author-info">
+        Author: <a href="https://pschaldenbrand.github.io/" target="_blank">Peter Schaldenbrand</a><br/>
+        Code:   <a href="https://github.com/pschaldenbrand/AnonImage" target="_blank">GitHub</a>
+    </div>
 </body>
 
 <script>

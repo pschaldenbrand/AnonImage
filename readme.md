@@ -5,6 +5,11 @@ Authorities are using images of protestors published on social media websites to
 ![Anonymized image of protesters](images/example.png)
 *Anonymized image of protesters. Original Image Via [ABCNews](https://s.abcnews.com/images/US/stephon-clark-protest-gty-jt-180331_hpMain_2_16x9t_608.jpg)*
 
+## Directions
+Run server:
+`python server.py`
+
 ## Acknowledgements
 The [Chen et al.](https://arxiv.org/abs/1706.05587) ([DeepLabV3 ResNet101](https://pytorch.org/docs/stable/torchvision/models.html)) image segmentation model was used.
+
 Resources used for server side code: [Jon Berg](https://fragments.turtlemeat.com/pythonwebserver.php), [Arunava Chakraborty](https://www.learnopencv.com/pytorch-for-beginners-semantic-segmentation-using-torchvision/)
