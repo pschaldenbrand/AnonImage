@@ -19,12 +19,47 @@
             max-width: 80vw;
             max-height: 80vh;
         }
-        #loading {
-            display: none;
-        }
         #image-upload {
             font-size: 1em;
+            font-family: monospace;
         }
+        #loading-icon {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            margin-left: 25%;
+            margin-top: 25%;
+            font-size: 1.5em;
+            width: 50%;
+            z-index: 421;
+        }
+        #loading-icon img {
+            width: 75%;
+        }
+        #grey-overlay {
+            position: absolute;
+            z-index: 420;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(152, 152, 152, 0.67);
+        }
+        .rotate {
+            -webkit-animation: spin 6s linear infinite;
+            -moz-animation: spin 6s linear infinite;
+            animation: rotation 6s infinite linear;
+        }
+
+        @keyframes rotation {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(359deg);
+            }
+        }
+}
     </style>
 </head>
 
@@ -34,21 +69,24 @@
         <input id="image-upload" name="image" type="file" accept=".png,.jpg,.jpeg,.tiff,.gif" /> 
     </form>
     <div id="returned-image"></div>
-    <div id="loading">Loading</div>
 </body>
 
 <script>
+const LOADING_HTML = jQuery('<div id="loading-icon" class="rotate"> Loading...<br/> '
+                                + '<img src="images/loading.png" /></div>'
+                                + '<div id="grey-overlay"> <div>');
+
 function displayAnonymizedImage(data) {
     jQuery('#returned-image').html('<img src="data:image/jpeg;base64,' + data + '" />');
 }
 
 function loading(isLoading) {
     if (isLoading) {
-        jQuery('#loading').show();
         jQuery('body').css({'cursor':'wait'});
+        jQuery('body').append(LOADING_HTML.clone());
     } else {
-        jQuery('#loading').hide();
         jQuery('body').css({'cursor':'unset'});
+        jQuery('#loading-icon, #grey-overlay').remove();
     }
 }
 
